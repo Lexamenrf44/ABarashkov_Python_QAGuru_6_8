@@ -3,8 +3,6 @@
 """
 import pytest
 
-from models.models import Product, Cart
-
 
 class TestProducts:
     """
@@ -38,7 +36,6 @@ class TestProducts:
             assert product.buy(2000) is ValueError
 
 
-
 class TestCart:
     """
     TODO Напишите тесты на методы класса Cart
@@ -46,3 +43,11 @@ class TestCart:
         На некоторые методы у вас может быть несколько тестов.
         Например, негативные тесты, ожидающие ошибку (используйте pytest.raises, чтобы проверить это)
     """
+
+    def test_add_product(self, cart, product):
+        with pytest.raises(ValueError):
+            assert cart.add_product(product, 0) is ValueError
+
+        cart.add_product(product, 10)
+        assert cart.products[product] == 10
+
