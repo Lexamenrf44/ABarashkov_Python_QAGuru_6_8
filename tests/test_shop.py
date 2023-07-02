@@ -12,9 +12,12 @@ class TestProducts:
     Например, текущий класс группирует тесты на класс Product
     """
 
-    def test_product_check_quantity(self, product):
+    def test_product_check_quantity(self, loaf, packet_of_juice, apple_pie):
         # TODO напишите проверки на метод check_quantity
-        pass
+        assert loaf.check_quantity(loaf.quantity - 1) is True
+        assert product.check_quantity(product.quantity) is True
+        assert product.check_quantity(product.quantity + 1) is False
+
 
     def test_product_buy(self, product):
         # TODO напишите проверки на метод buy
