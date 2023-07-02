@@ -1,3 +1,6 @@
+from typing import Dict
+
+
 class Product:
     """
     Класс продукта
@@ -67,13 +70,19 @@ class Cart:
         Если remove_count не передан, то удаляется вся позиция
         Если remove_count больше, чем количество продуктов в позиции, то удаляется вся позиция
         """
-        raise NotImplementedError
+        if remove_count is None or remove_count >= self.products[product]:
+            del self.products[product]
+        else:
+            self.products[product] -= remove_count
 
     def clear(self):
-        raise NotImplementedError
+        self.products.clear()
 
     def get_total_price(self) -> float:
-        raise NotImplementedError
+        total_price = 0
+        for product, quantity in self.products.items():
+            total_price += product.price * quantity
+        return total_price
 
     def buy(self):
         """
@@ -81,4 +90,7 @@ class Cart:
         Учтите, что товаров может не хватать на складе.
         В этом случае нужно выбросить исключение ValueError
         """
-        raise NotImplementedError
+        for product, buy_count, quantity in self.products.items():
+            product.check_quantity(buy_count)
+            product.buy(quantity=buy_count)
+        self.products.clear()
