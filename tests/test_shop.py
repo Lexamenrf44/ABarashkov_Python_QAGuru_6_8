@@ -46,8 +46,44 @@ class TestCart:
 
     def test_add_product(self, cart, product):
         with pytest.raises(ValueError):
+
+            # Проверяем резульататы
             assert cart.add_product(product, 0) is ValueError
 
         cart.add_product(product, 10)
+
+        # Проверяем резульататы
         assert cart.products[product] == 10
+
+    def test_remove_product(self, cart, product):
+        cart.add_product(product, 50)
+
+        cart.remove_product(product)
+
+        # Проверяем резульататы
+        assert product not in cart.products.keys()
+
+    def test_clear(self, cart, product):
+        cart.add_product(product, 50)
+
+        cart.clear()
+
+        # Проверяем резульататы
+        assert len(cart.products) == 0
+
+    def test_get_total_price(self, cart, product):
+        cart.add_product(product, 50)
+
+        cart.get_total_price()
+
+        # Проверяем резульататы
+        assert cart.get_total_price() == 5000
+
+    def test_buy(self, cart, product):
+        cart.add_product(product, 50)
+
+        cart.buy()
+
+        # Проверяем резульататы
+        assert product.quantity == 950
 
