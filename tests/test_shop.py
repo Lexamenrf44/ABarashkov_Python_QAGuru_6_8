@@ -13,19 +13,30 @@ class TestProducts:
     """
 
     def test_product_check_quantity(self, product):
+
         # TODO напишите проверки на метод check_quantity
+
+        # Проверяем результаты
         assert product.check_quantity(50) == True
         assert product.check_quantity(1050) == False
 
-
     def test_product_buy(self, product):
+
         # TODO напишите проверки на метод buy
-        pass
+        product.buy(50)
+
+        # Проверяем результаты
+        assert product.quantity == 950
 
     def test_product_buy_more_than_available(self, product):
+
         # TODO напишите проверки на метод buy,
         #  которые ожидают ошибку ValueError при попытке купить больше, чем есть в наличии
-        pass
+        with pytest.raises(ValueError):
+
+            # Проверяем резульататы
+            assert product.buy(2000) is ValueError
+
 
 
 class TestCart:
