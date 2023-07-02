@@ -18,7 +18,10 @@ class Product:
         TODO Верните True если количество продукта больше или равно запрашиваемому
             и False в обратном случае
         """
-        raise NotImplementedError
+        if self.quantity >= quantity > 0:
+            return True
+        else:
+            raise ValueError
 
     def buy(self, quantity):
         """
@@ -26,7 +29,9 @@ class Product:
             Проверьте количество продукта используя метод check_quantity
             Если продуктов не хватает, то выбросите исключение ValueError
         """
-        raise NotImplementedError
+        if self.check_quantity(quantity):
+            self.quantity -= quantity
+        return self.quantity
 
     def __hash__(self):
         return hash(self.name + self.description)
