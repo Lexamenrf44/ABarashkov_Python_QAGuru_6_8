@@ -16,3 +16,7 @@ def packet_of_juice():
 def apple_pie():
     return Product("pie", 7.50, "This is a packet of juice", 200)
 
+
+@pytest.fixture(scope='function', autouse=False)
+def cart():
+    return Cart()

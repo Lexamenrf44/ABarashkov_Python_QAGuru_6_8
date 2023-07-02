@@ -3,12 +3,7 @@
 """
 import pytest
 
-from models.models import Product
-
-
-@pytest.fixture
-def product():
-    return Product("book", 100, "This is a book", 1000)
+from models.models import Product, Cart
 
 
 class TestProducts:
