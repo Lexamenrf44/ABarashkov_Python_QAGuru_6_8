@@ -31,9 +31,7 @@ class TestProducts:
         # TODO напишите проверки на метод buy,
         #  которые ожидают ошибку ValueError при попытке купить больше, чем есть в наличии
         with pytest.raises(ValueError):
-
-            # Проверяем резульататы
-            assert product.buy(2000) is ValueError
+            product.buy(2000)
 
 
 class TestCart:
