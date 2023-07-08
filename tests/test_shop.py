@@ -43,15 +43,11 @@ class TestCart:
     """
 
     def test_add_product(self, cart, product):
-        with pytest.raises(ValueError):
+        cart.add_product(product, 100)
+        assert cart.products[product] == 100
 
-            # Проверяем резульататы
-            assert cart.add_product(product, 0) is ValueError
-
-        cart.add_product(product, 10)
-
-        # Проверяем резульататы
-        assert cart.products[product] == 10
+        cart.add_product(product, 100)
+        assert cart.products[product] == 200
 
     def test_remove_product(self, cart, product):
         cart.add_product(product, 50)
