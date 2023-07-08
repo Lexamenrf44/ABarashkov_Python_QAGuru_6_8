@@ -21,9 +21,8 @@ class Product:
         TODO Верните True если количество продукта больше или равно запрашиваемому
             и False в обратном случае
         """
-        if quantity == 0:
-            raise ValueError
-
+        if quantity <= 0:
+            raise ValueError("Количество товара должно быть больше 0")
         return self.quantity >= quantity
 
     def buy(self, quantity):
