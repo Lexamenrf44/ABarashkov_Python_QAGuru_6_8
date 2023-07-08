@@ -44,18 +44,23 @@ class TestCart:
 
     def test_add_product(self, cart, product):
         cart.add_product(product, 100)
+
+        # Проверяем резульататы
         assert cart.products[product] == 100
 
         cart.add_product(product, 100)
+
+        # Проверяем резульататы
         assert cart.products[product] == 200
 
     def test_remove_product(self, cart, product):
         cart.add_product(product, 50)
-
         cart.remove_product(product)
 
         # Проверяем резульататы
         assert product not in cart.products.keys()
+
+
 
     def test_clear(self, cart, product):
         cart.add_product(product, 50)
