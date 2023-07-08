@@ -90,9 +90,7 @@ class TestCart:
 
     def test_buy(self, cart, product):
         cart.add_product(product, 50)
-
         cart.buy()
 
         # Проверяем резульататы
         assert product.quantity == 950
-
