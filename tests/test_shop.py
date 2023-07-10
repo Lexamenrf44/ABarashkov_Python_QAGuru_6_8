@@ -112,6 +112,9 @@ class TestCart:
         # Проверяем резульататы
         assert product.quantity == 950
 
-        cart.add_product(product, 1050)
+    def test_buy_with_error(self, cart, product):
+        cart.add_product(product, 1010)
+
         with pytest.raises(ValueError):
-            assert cart.buy() is ValueError
+            cart.buy()
+
