@@ -2,6 +2,17 @@
 Протестируйте классы из модуля homework/models.py
 """
 import pytest
+from models.models import Product, Cart
+
+
+@pytest.fixture()
+def product():
+    return Product("book", 100, "This is book", 1000)
+
+
+@pytest.fixture()
+def cart():
+    return Cart()
 
 
 class TestProducts:
@@ -61,6 +72,12 @@ class TestCart:
         assert product not in cart.products
 
         cart.add_product(product, 50)
+        cart.remove_product(product, 50)
+
+        # Проверяем резульататы
+        assert product not in cart.products
+
+        cart.add_product(product, 50)
         cart.remove_product(product, 30)
 
         # Проверяем резульататы
@@ -94,3 +111,7 @@ class TestCart:
 
         # Проверяем резульататы
         assert product.quantity == 950
+
+        cart.add_product(product, 1050)
+        with pytest.raises(ValueError):
+            assert cart.buy() is ValueError

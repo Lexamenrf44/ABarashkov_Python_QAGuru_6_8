@@ -1,6 +1,3 @@
-from typing import Dict
-
-
 class Product:
     """
     Класс продукта
@@ -23,6 +20,7 @@ class Product:
         """
         if quantity <= 0:
             raise ValueError("Количество товара должно быть больше 0")
+
         return self.quantity >= quantity
 
     def buy(self, quantity):
@@ -34,6 +32,7 @@ class Product:
         if self.check_quantity(quantity):
             self.quantity = self.quantity - quantity
         else:
+
             raise ValueError(f"Продукта {self.name} недостаточно на складе")
 
     def __hash__(self):
